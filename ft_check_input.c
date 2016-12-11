@@ -1,63 +1,75 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_file.c                                    :+:      :+:    :+:   */
+/*   ft_check_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jthillar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 15:50:35 by jthillar          #+#    #+#             */
-/*   Updated: 2016/12/01 14:27:41 by jthillar         ###   ########.fr       */
+/*   Updated: 2016/12/09 17:22:39 by jthillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h" 
+#include "fillit.h"
 #include <stdio.h>
-int	ft_check_input(char *s, int i)
-{
-	int count;
-	int j;
-	int ligne;
-	int diese;
 
-	count = 0;
+int	ft_count_max(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	if (i > 525)
+		return (0);
+	else
+		return (1);
+}
+
+int	ft_check_square(char *s, int i)
+{
+	int diese;
+	int ligne;
+	int j;
+
 	ligne = 0;
 	diese = 0;
-	while (s[count])
-		count++;
-	if (count > 525)
-		return (0);
-	while (s[i])
+	while (s[i] || ligne < 5)
 	{
 		j = 0;
 		while (s[i + j] == '.' || s[i + j] == '#')
-		{		
-			if (s[i + j] == '#')
+			if (s[i + j++] == '#')
 				diese++;
-			j++;
-		}
+		if (ligne == 4 && diese == 4)
+			return (1);
 		if (s[i + j] == '\n' && j == 4)
+		{
 			ligne++;
-		else 
-			return (0);
-		if (ligne == 4 && s[i + j] == '\n' && s[i + j + 1] == '\n')
-		{
-			ligne = 0;
-			if (diese != 4)
-				return (0);
-			diese = 0;
-			i = i + j + 2;
-		}
-		else if (ligne == 4 && s[i + j] == '\n' && s[i + j + 1] == '\0')
-		{
-			if (diese != 4)
-				return (0);
-			i = i + j + 1;
+			i = i + 5;
 		}
 		else
-			i = i + j + 1;
+			return (0);
+	}
+	return (0);
+}
+
+int	ft_check_input(char *s, int i)
+{
+	if (ft_count_max(s) == 0)
+		return (0);
+	while (s[i])
+	{
+		if (ft_check_square(s, i) == 0)
+			return (0);
+		else
+		{
+			if (s[i + 19] == '\n' && s[i + 20] == '\n')
+				i = i + 21;
+			else
+				i = i + 20;
+		}
 	}
 	if (s[i - 2] == '.' || s[i - 2] == '#')
 		return (1);
-	else
-		return (0);
+	return (0);
 }

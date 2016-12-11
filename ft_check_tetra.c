@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 18:04:24 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/07 14:47:32 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/09 12:09:51 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		ft_check_tetra(char **tetra, int i, int nbtetra)
 				return (0);
 			i++;
 		}
-
 	}
 	return (1);
 }

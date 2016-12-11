@@ -6,7 +6,7 @@
 #    By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/28 12:29:19 by tferrari          #+#    #+#              #
-#    Updated: 2016/12/01 11:55:49 by tferrari         ###   ########.fr        #
+#    Updated: 2016/12/11 11:40:47 by tferrari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC = 	main.c \
 		ft_count_char.c \
 		ft_count_tetra.c \
 		ft_tab_2d.c \
-		ft_check_piece.c 
+		ft_check_piece.c
 
 PT_O =	main.o \
 		ft_check_tetra.o \
