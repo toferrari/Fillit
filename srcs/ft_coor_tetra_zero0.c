@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_coor_tetra_zero.c                               :+:      :+:    :+:   */
+/*   ft_coor_tetra_zero0.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jthillar <jthillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 15:02:42 by jthillar          #+#    #+#             */
-/*   Updated: 2016/12/12 18:13:01 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/13 18:31:37 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ int		ft_baze_zero(int *coor)
 	return (0);
 }
 
-t_tetra	*ft_coor_tetra_zero_x(t_tetra *tetra, int nbtetra)
+t_tetra	*ft_coor_tetra_zero_x(t_tetra *tetra, int nbtetra, int i)
 {
-	int i;
 	int j;
 
-	i = 0;
 	while (i < nbtetra)
 	{
 		if (ft_baze_zero(tetra[i].x) == 0)
@@ -51,13 +49,11 @@ t_tetra	*ft_coor_tetra_zero_x(t_tetra *tetra, int nbtetra)
 	return (tetra);
 }
 
-t_tetra	*ft_coor_tetra_zero_xy(t_tetra *tetra, int nbtetra)
+t_tetra	*ft_coor_tetra_zero_xy(t_tetra *tetra, int nbtetra, int i)
 {
-	int i;
 	int j;
 
-	i = 0;
-	tetra = ft_coor_tetra_zero_x(tetra, nbtetra);
+	tetra = ft_coor_tetra_zero_x(tetra, nbtetra, i);
 	while (i < nbtetra)
 	{
 		if (ft_baze_zero((tetra[i]).y) == 0)

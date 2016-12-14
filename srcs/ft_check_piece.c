@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_coor.c                                    :+:      :+:    :+:   */
+/*   ft_check_piece.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/12 17:31:05 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/12 18:41:26 by tferrari         ###   ########.fr       */
+/*   Created: 2016/11/30 18:17:38 by tferrari          #+#    #+#             */
+/*   Updated: 2016/12/14 11:20:08 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "fillit.h"
 
-int		ft_check_coor_x(t_tetra *coor, int len, int i)
+int		ft_check_piece(char **tetra, int x, int y, int c)
 {
-	int j;
+	int nb;
 
-	j = 0;
-	while (j < 4)
-	{
-		if (coor[i].x[j] + 1 > len)
-			return (0);
-		j++;
-	}
-	return (1);
-}
-
-int		ft_check_coor_y(t_tetra *coor, int len, int i)
-{
-	int j;
-
-	j = 0;
-	while (j < 4)
-	{
-		if (coor[i].y[j] + 1 > len)
-			return (0);
-		j++;
-	}
-	return (1);
+	nb = 1;
+	if (tetra[y][x] != '#')
+		return (0);
+	tetra[y][x] = c + 'A';
+	nb += ft_check_piece(tetra, x + 1, y, c);
+	nb += ft_check_piece(tetra, x, y + 1, c);
+	if (x > 0)
+		nb += ft_check_piece(tetra, x - 1, y, c);
+	return (nb);
 }

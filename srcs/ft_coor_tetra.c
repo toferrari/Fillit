@@ -6,7 +6,7 @@
 /*   By: jthillar <jthillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 14:20:32 by jthillar          #+#    #+#             */
-/*   Updated: 2016/12/12 14:45:04 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/13 16:50:19 by jthillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int		ft_cpx(char **tab, int x, int y, int i)
 	coor_x = 0;
 	while (tab[y])
 	{
-
-
 		while (tab[y][x] != 'A' + i && tab[y][x])
 		{
 			x++;

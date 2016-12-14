@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_tetra.c                                      :+:      :+:    :+:   */
+/*   ft_display.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jthillar <jthillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/30 14:23:35 by jthillar          #+#    #+#             */
-/*   Updated: 2016/11/30 14:51:00 by tferrari         ###   ########.fr       */
+/*   Created: 2016/12/13 15:15:42 by jthillar          #+#    #+#             */
+/*   Updated: 2016/12/14 14:03:03 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"fillit.h"
+#include "fillit.h"
+#include "libft.h"
 
-int		ft_count_tetra(char *c)
+void	ft_display(char **solution, int len)
 {
-	int count_i;
-	int count;
+	int i;
 
-	count_i = 0;
-	while (c[count_i])
-		count_i++;
-	count = (count_i + 1) / 21;
-	return(count);
+	i = 0;
+	while (i < len)
+	{
+		ft_putstr(solution[i]);
+		i++;
+	}
 }
