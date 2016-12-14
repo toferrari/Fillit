@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 16:01:37 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/14 14:12:12 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/14 16:29:15 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int			ft_resolution(t_tetra *tetra, int nbtetra, int len, char **tab)
 	{
 		len++;
 		tetra = ft_coor_tetra_zero_xy(ft_coor_tetra(tab, nbtetra), nbtetra, 0);
+		
 		ft_resolution(tetra, nbtetra, len, tab);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 11:21:21 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/14 14:15:10 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/14 16:28:58 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,25 +84,7 @@ static t_tetra	*ft_new_coor(t_tetra *coor, int i, int pos, int len)
 	{
 		while (j < 4)
 		{
-			if (i == 7)
-			{ft_putchar(i + 'A');
-			ft_putchar('\n');
-			ft_putstr("Hx0 :");
-			ft_putnbr(coor[i].x[j]);
-			ft_putchar('\n');
-			ft_putstr("Hy0 :");
-			ft_putnbr(coor[i].y[j]);
-			ft_putchar('\n');}
 			coor[i].x[j] += 1;
-			if (i == 7)
-			{ft_putchar(i + 'A');
-			ft_putchar('\n');
-			ft_putstr("Hx0 :");
-			ft_putnbr(coor[i].x[j]);
-			ft_putchar('\n');
-			ft_putstr("Hy0 :");
-			ft_putnbr(coor[i].y[j]);
-			ft_putchar('\n');}
 			j++;
 		}
 	}
@@ -115,48 +97,26 @@ static t_tetra	*ft_new_coor(t_tetra *coor, int i, int pos, int len)
 			j++;
 		}
 	}
-	ft_putstr("d\n");
 	return (coor);
 }
 
 int				ft_try_tetra(int nbtetra, char **solu, int i, t_tetra *coor)
 {
 	int len;
-	ft_putchar('t');
+
 	len = ft_strlen(solu[0]) - 1;
-	int j = 0;
-	ft_putchar('u');
-	if (i == 7)
-	{
-		while (solu[0][j])
-		{
-			ft_putchar(solu[0][j]);
-			j++;
-		}
-	}
-	ft_putstr(solu[0]);
-	ft_putchar('v');
 	if (i < nbtetra)
 	{
-		ft_putstr("j'essai de placer la piece :");
-		ft_putchar(i + 'A');
-		ft_putchar('\n');
 		if (ft_empty(coor, solu, i, len) == 1)
-		{
-			ft_putstr("a\n");
-			ft_try_tetra(nbtetra, ft_write_tetra(coor, solu, i), i + 1, coor);}
+			ft_try_tetra(nbtetra, ft_write_tetra(coor, solu, i), i + 1, coor);
 		else if (ft_check_coor_x(coor, len, i) == 1)
-		{ft_putstr("b\n");
-		ft_putstr(solu[0]);
-			ft_try_tetra(nbtetra, solu, i, ft_new_coor(coor, i, 1, len));}
+			{coor = ft_new_coor(coor, i, 1, len);
+			ft_try_tetra(nbtetra, solu, i, coor);}
 		else if (ft_check_coor_y(coor, len, i) == 1)
-		{ft_putstr("c\n");
-			ft_try_tetra(nbtetra, solu, i, ft_new_coor(coor, i, 2, len));}
+			{coor = ft_new_coor(coor, i, 2, len);
+			ft_try_tetra(nbtetra, solu, i, coor);}
 		else if (i > 0)
 		{
-			ft_putstr("je supp la piece :");
-			ft_putchar(i + 'A');
-			ft_putchar('\n');
 			solu = ft_delete_tetra(solu, i - 1);
 			coor = ft_new_coor(coor, i - 1, 1, len);
 			coor = ft_coor_tetra_zero_xy(coor, nbtetra, i);

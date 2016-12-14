@@ -6,7 +6,7 @@
 #    By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/28 12:29:19 by tferrari          #+#    #+#              #
-#    Updated: 2016/12/14 14:27:31 by tferrari         ###   ########.fr        #
+#    Updated: 2016/12/14 16:30:13 by tferrari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ LIB = -L. -lft
 all: $(NAME)
 
 $(NAME):
-	gcc -c -Wall -Werror -Wextra -g $(SRC) -Iincludes/
+	gcc -c -Wall -Werror -Wextra $(SRC) -Iincludes/
 	gcc -o $(NAME) $(OBJ) $(LIB) -Iincludes/
 
 clean:
