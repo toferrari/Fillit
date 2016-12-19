@@ -6,11 +6,12 @@
 /*   By: jthillar <jthillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 15:02:42 by jthillar          #+#    #+#             */
-/*   Updated: 2016/12/13 18:32:23 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/16 11:20:28 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include "libft.h"
 
 int		ft_baze_zero(int *coor)
 {

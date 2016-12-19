@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 13:04:04 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/14 16:28:28 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/19 18:12:36 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int				ft_try_tetra(int nbtetra, char **solu, int i, t_tetra *coor);
 int				ft_resolution(t_tetra *tetra, int nbtetras, int len,
 				char **tab);
 int				ft_sqrt_up(int nb_square, int nb);
-int				ft_check_coor_x(t_tetra *coor, int len, int i);
-int				ft_check_coor_y(t_tetra *coor, int len, int i);
+int				ft_check_xy(int *coor_x, int *coor_y, char **solu, t_tetra *coor);
 void			ft_display(char **solution, int len);
+void			ft_check_xy2(int *coor_x, int *coor_y, char **solu, t_tetra *coor);
 
 #endif
