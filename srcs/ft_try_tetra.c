@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 11:21:21 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/19 19:33:25 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/20 19:09:25 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ int				ft_try_tetra(int nbtetra, char **solu, int i, t_tetra *coor)
 		else if (ft_check_xy(&x, &y, solu, &coor[i]) == 1)
 		{
 			coor[i] = ft_new_coor(coor[i], x, y);
-			ft_try_tetra(nbtetra, solu, i, coor);
+			ft_try_tetra(nbtetra, ft_write_tetra(coor[i], solu, i), i + 1, coor);
 		}
 		else if (i > 0)
 		{
@@ -235,14 +235,10 @@ int				ft_try_tetra(int nbtetra, char **solu, int i, t_tetra *coor)
 			ft_putchar('A' + i - 1);
 			ft_putstr(" : ");
 			ft_putchar('\n');
-			ft_putstr("coor tetra ft_x :");
-			ft_putnbr(coor[i-1].x[0]);
-			ft_putchar('\n');
-			ft_check_xy2(&x, &y, solu, &coor[i - 1]);
-			coor[i - 1] =  ft_new_coor2(coor[i - 1], len);
+			ft_check_xy2(&x, &y , solu, &coor[i - 1]);
+			coor[i - 1] =  ft_new_coor(coor[i - 1], x, y);
 			coor = ft_coor_tetra_zero_xy(coor, nbtetra, i);
 			i -= 2;
-
 			ft_try_tetra(nbtetra, solu, ++i, coor);
 		}
 	}
