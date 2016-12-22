@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 18:17:38 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/14 11:20:08 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/22 16:29:07 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int		ft_check_piece(char **tetra, int x, int y, int c)
 {
 	int nb;
 
-	nb = 1;
 	if (tetra[y][x] != '#')
 		return (0);
+	nb = 1;
 	tetra[y][x] = c + 'A';
 	nb += ft_check_piece(tetra, x + 1, y, c);
 	nb += ft_check_piece(tetra, x, y + 1, c);

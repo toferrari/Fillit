@@ -6,7 +6,7 @@
 /*   By: jthillar <jthillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 15:02:42 by jthillar          #+#    #+#             */
-/*   Updated: 2016/12/16 11:20:28 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/22 15:06:00 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_tetra	*ft_coor_tetra_zero_xy(t_tetra *tetra, int nbtetra, int i)
 {
 	int j;
 
-	tetra = ft_coor_tetra_zero_x(tetra, nbtetra, i);
+	tetra = ft_coor_tetra_zero_x(tetra,nbtetra, i);
 	while (i < nbtetra)
 	{
 		if (ft_baze_zero((tetra[i]).y) == 0)

@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 13:03:10 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/14 18:38:03 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/22 18:11:59 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int argc, char **argv)
 	int		ret;
 	char	buf[BUF_SIZE];
 	char	**tetra;
+	int		nbtetra[3];
 
 	tetra = NULL;
 	fd = open(argv[1], O_RDONLY);
@@ -40,12 +41,14 @@ int	main(int argc, char **argv)
 		return (ft_error_us());
 	ret = read(fd, buf, BUF_SIZE);
 	tetra = ft_fill_tab(buf, tetra, 0, 0);
+	nbtetra[0] = ft_count_tetra(buf);
+	nbtetra[1] = 0;
+	nbtetra[2] = nbtetra[0];
 	if (ft_check_input(buf, 0) == 0 ||
-	ft_check_tetra(tetra, 0, ft_count_tetra(buf)) == 0)
+	ft_check_tetra(tetra, 0, nbtetra[0]) == 0)
 		return (ft_error());
 	if (ft_resolution(ft_coor_tetra_zero_xy(ft_coor_tetra(tetra,
-	ft_count_tetra(buf)), ft_count_tetra(buf), 0), ft_count_tetra(buf),
-				ft_sqrt_up(ft_count_tetra(buf) * 4, 2), tetra) == 0)
+	nbtetra[0]), nbtetra[0], 0), nbtetra, ft_sqrt_up(nbtetra[0] * 4, 2), tetra) == 0)
 		return (ft_error());
 	return (0);
 }

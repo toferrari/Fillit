@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 17:31:05 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/20 19:41:30 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/22 17:56:19 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,30 @@ int		ft_check_xy(int *coor_x, int *coor_y, char **solu, t_tetra *coor)
 	return (0);
 }
 
+int			ft_is_l(t_tetra *coor)
+{
+	if (coor->x[0] > 0)
+		return (1);
+	return (0);
+}
+
+t_tetra		*ft_modif_coor(t_tetra *coor)
+{
+	int i;
+
+	i = 0;
+	while (coor->x[0] != 0)
+	{
+		while (i < 4)
+		{
+			coor->x[i] -= 1;
+			i++;
+		}
+		i = 0;
+	}
+	return (coor);
+}
+
 void		*ft_check_xy2(int *coor_x, int *coor_y, char **solu, t_tetra *coor)
 {
 	int cmp;
@@ -150,12 +174,14 @@ void		*ft_check_xy2(int *coor_x, int *coor_y, char **solu, t_tetra *coor)
 	int y;
 	int j;
 
+	/*
+
 	ft_putstr("x0 : ");
 	ft_putnbr(coor->x[0]);
 	ft_putchar('\n');
 	ft_putstr("y0 : ");
 	ft_putnbr(coor->y[0]);
-	ft_putchar('\n');
+	ft_putchar('\n');*/
 	j = 0;
 	x = coor->x[0] + 1;
 	y = coor->y[0];
@@ -184,22 +210,30 @@ void		*ft_check_xy2(int *coor_x, int *coor_y, char **solu, t_tetra *coor)
 		}
 	}
 	len = ft_strlen(solu[0]) - 1;
+	if (ft_is_l(coor) == 1)
+		coor = ft_modif_coor(coor);
 	/*ft_putstr("len : ");
 	ft_putnbr(len);
+	ft_putchar('\n');*/
+	/*ft_putstr("x modif : ");
+	ft_putnbr(coor->x[0]);
+	ft_putchar('\n');
+	ft_putstr("y modif : ");
+	ft_putnbr(coor->y[0]);
 	ft_putchar('\n');*/
 	while((y < len) && solu[y])
 	{
 		while (x < len  && (solu[y][x] != '\n' && solu[y][x] ))
 		{
-			ft_putstr("x : ");
+			/*ft_putstr("x : ");
 			ft_putnbr(x + coor->x[cmp]);
 			ft_putchar('\n');
 			ft_putstr("y : ");
 			ft_putnbr(y + coor->y[cmp]);
 			ft_putchar('\n');
 			ft_putchar(solu[y+ coor->y[cmp]][x+ coor->x[cmp]]);
-			ft_putchar('\n');
-			if ((x < len  && y < len) && solu[y][x] == '.')
+			ft_putchar('\n');*/
+			if (solu[y][x] == '.')
 			{
 				while ((x + coor->x[cmp] < len  && y + coor->y[cmp] < len) &&
 				cmp < 4 && solu[y +  coor->y[cmp]][x + coor->x[cmp]] == '.' )

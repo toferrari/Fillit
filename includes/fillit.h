@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 13:04:04 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/20 14:28:00 by tferrari         ###   ########.fr       */
+/*   Updated: 2016/12/22 18:10:59 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_tetra			*ft_coor_tetra(char **tab, int nbtetra);
 int				ft_baze_zero(int *coor);
 t_tetra			*ft_coor_tetra_zero_x(t_tetra *t_te, int nbtetra, int i);
 t_tetra			*ft_coor_tetra_zero_xy(t_tetra *t_te, int nbtetra, int i);
-int				ft_try_tetra(int nbtetra, char **solu, int i, t_tetra *coor);
-int				ft_resolution(t_tetra *tetra, int nbtetras, int len,
+int				ft_try_tetra(int *nbtetra, char **solu, int i, t_tetra *coor);
+int				ft_resolution(t_tetra *tetra, int *nbtetras, int len,
 				char **tab);
 int				ft_sqrt_up(int nb_square, int nb);
 int				ft_check_xy(int *coor_x, int *coor_y, char **solu, t_tetra *coor);
