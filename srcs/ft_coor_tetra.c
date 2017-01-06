@@ -6,13 +6,11 @@
 /*   By: jthillar <jthillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 14:20:32 by jthillar          #+#    #+#             */
-/*   Updated: 2016/12/22 15:06:20 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/01/06 14:06:24 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include "libft.h"
 
 int		ft_cpx(char **tab, int x, int y, int i)

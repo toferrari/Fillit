@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_tetra.c                                   :+:      :+:    :+:   */
+/*   ft_chech_coor_ft.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jthillar <jthillar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/30 14:23:35 by jthillar          #+#    #+#             */
-/*   Updated: 2017/01/06 14:07:30 by tferrari         ###   ########.fr       */
+/*   Created: 2017/01/06 12:42:23 by tferrari          #+#    #+#             */
+/*   Updated: 2017/01/06 14:05:29 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include "libft.h"
 
-int		ft_count_tetra(char *c)
+int		ft_is_l(t_tetra *coor)
 {
-	int count_i;
-	int count;
+	if (coor->x[0] > 0)
+		return (1);
+	return (0);
+}
 
-	count_i = 0;
-	while (c[count_i])
-		count_i++;
-	count = (count_i + 1) / 21;
-	return (count);
+void	ft_value(int x, int y, int *cx, int *cy)
+{
+	*cx = x;
+	*cy = y;
 }

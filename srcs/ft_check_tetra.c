@@ -6,13 +6,11 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 18:04:24 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/22 15:07:20 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/01/06 12:47:48 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
-#include <unistd.h>
 
 int		ft_check_tetra(char **tetra, int i, int nbtetra)
 {

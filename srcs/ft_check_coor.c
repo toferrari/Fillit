@@ -6,150 +6,14 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 17:31:05 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/22 17:56:19 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/01/06 14:05:53 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "fillit.h"
 #include "libft.h"
 
-/*int		ft_check_coor_x(t_tetra *coor, int len)
-{
-	int j;
-
-	j = 0;
-	while (j < 4)
-	{
-		if (coor->x[j] + 1 > len)
-			return (0);
-		j++;
-	}
-	return (1);
-}
-
-int		ft_check_coor_y(t_tetra *coor, int len)
-{
-	int j;
-
-	j = 0;
-	while (j < 4)
-	{
-		if (coor->y[j] + 1 >= len)
-			return (0);
-		j++;
-	}
-	return (1);
-}
-
-int		ft_check_xy_plus1(int *coor_x, int *coor_y, char **solu, t_tetra *coor)
-{
-	int cmp;
-	int len;
-
-	cmp = 0;
-	len = ft_strlen(solu[0]) - 1;
-	while(*coor_y < len && *coor_x < len &&solu[*coor_y])
-	{
-		*coor_x = 0;
-		while (solu[*coor_y][*coor_x])
-		{
-			if (solu[*coor_y + coor->y[cmp]][*coor_x + coor->x[cmp]] == '.')
-			{
-				ft_putstr(" abcisse :");
-				ft_putnbr(*coor_x);
-				ft_putchar('\n');
-				ft_putstr(" ordonner :");
-				ft_putnbr(*coor_y);
-				ft_putchar('\n');
-				cmp = 0;
-				while (cmp < 4 && solu[*coor_y + coor->y[cmp]][*coor_x + coor->x[cmp]] == '.' )
-				{ft_putstr(" x :");
-				ft_putnbr(coor->x[cmp] + *coor_x);
-				ft_putchar('\n');
-				ft_putstr(" y :");
-				ft_putnbr(coor->y[cmp] + *coor_y);
-				ft_putchar('\n');
-					cmp++;
-				}
-				ft_putendl("sorti de boucle");
-				if (cmp == 4)
-					return (1);
-			}
-			*coor_x += 1;
-		}
-		*coor_y += 1;
-	}
-	return (0);
-}*/
-
-int		ft_check_xy(int *coor_x, int *coor_y, char **solu, t_tetra *coor)
-{
-	int cmp;
-	int len;
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	cmp = 0;
-	len = ft_strlen(solu[0]) - 1;
-	/*ft_putstr("len : ");
-	ft_putnbr(len - 1);
-	ft_putchar('\n');*/
-	while((y < len || x < len) && solu[y])
-	{
-		x = 0;
-		while (x < len  && solu[y][x])
-		{
-			if ((x + coor->x[cmp] < len  && y + coor->y[cmp] < len)
-			&& solu[y + coor->y[cmp]][x + coor->x[cmp]] == '.')
-			{
-				while ((x + coor->x[cmp] < len  && y + coor->y[cmp] < len) &&
-				cmp < 4 && solu[y + coor->y[cmp]][x + coor->x[cmp]] == '.' )
-				{
-				/*ft_putstr(" coor tetra x :");
-				ft_putnbr(coor->x[cmp]);
-				ft_putchar('\n');
-				ft_putstr("coor tetra y : :");
-				ft_putnbr(coor->y[cmp]);
-				ft_putchar('\n');
-					ft_putstr("solution x :");
-					ft_putnbr(coor->x[cmp] + x);
-					ft_putchar('\n');
-					ft_putstr("solution y :");
-					ft_putnbr(coor->y[cmp] + y);
-					ft_putchar('\n');*/
-					cmp++;
-					/*ft_putstr("valeur compteur :");
-					ft_putnbr(cmp);
-					ft_putchar('\n');*/
-					if (x + coor->x[cmp] >= len && y + coor->y[cmp] >= len)
-						cmp = 5;
-				}
-				if (cmp == 4)
-				{
-					*coor_x = x;
-					*coor_y = y;
-					return (1);
-				}
-				cmp = 0;
-			}
-			x++;
-		}
-		y++;
-	}
-	return (0);
-}
-
-int			ft_is_l(t_tetra *coor)
-{
-	if (coor->x[0] > 0)
-		return (1);
-	return (0);
-}
-
-t_tetra		*ft_modif_coor(t_tetra *coor)
+static t_tetra	*ft_modif_coor(t_tetra *coor)
 {
 	int i;
 
@@ -166,30 +30,61 @@ t_tetra		*ft_modif_coor(t_tetra *coor)
 	return (coor);
 }
 
-void		*ft_check_xy2(int *coor_x, int *coor_y, char **solu, t_tetra *coor)
+static int		ft_cut(int x, int y, t_tetra *coor, char **solu)
 {
 	int cmp;
 	int len;
+
+	cmp = 0;
+	len = ft_strlen(solu[0]) - 1;
+	while ((x + coor->x[cmp] < len && y + coor->y[cmp] < len) &&
+	cmp < 4 && solu[y + coor->y[cmp]][x + coor->x[cmp]] == '.')
+	{
+		cmp++;
+		if (x + coor->x[cmp] >= len && y + coor->y[cmp] >= len)
+			cmp = 5;
+	}
+	if (cmp == 4)
+		return (cmp);
+	return (0);
+}
+
+int				ft_xy(int *coor_x, int *coor_y, char **solu, t_tetra *coor)
+{
+	int len;
 	int x;
 	int y;
+
+	y = 0;
+	len = ft_strlen(solu[0]) - 1;
+	while ((y < len || x < len) && solu[y])
+	{
+		x = 0;
+		while (x < len && solu[y][x])
+		{
+			if ((x + coor->x[0] < len && y + coor->y[0] < len)
+			&& solu[y + coor->y[0]][x + coor->x[0]] == '.')
+			{
+				if (ft_cut(x, y, coor, solu) == 4)
+				{
+					ft_value(x, y, coor_x, coor_y);
+					return (1);
+				}
+			}
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+static void		ft_zero(t_tetra *coor, int *x, int *y)
+{
 	int j;
 
-	/*
-
-	ft_putstr("x0 : ");
-	ft_putnbr(coor->x[0]);
-	ft_putchar('\n');
-	ft_putstr("y0 : ");
-	ft_putnbr(coor->y[0]);
-	ft_putchar('\n');*/
+	*x = coor->x[0] + 1;
+	*y = coor->y[0];
 	j = 0;
-	x = coor->x[0] + 1;
-	y = coor->y[0];
-	/*ft_putstr("coor de B : ");
-	ft_putnbr(y);
-	ft_putchar('\n');
-	ft_putnbr(y + coor->y[0]);
-	ft_putchar('\n');*/
 	while (ft_baze_zero(coor->x) != 1)
 	{
 		j = 0;
@@ -209,56 +104,33 @@ void		*ft_check_xy2(int *coor_x, int *coor_y, char **solu, t_tetra *coor)
 			j++;
 		}
 	}
-	len = ft_strlen(solu[0]) - 1;
+}
+
+void			*ft_check_xy2(int *cr_x, int *cr_y, char **s, t_tetra *coor)
+{
+	int tb[3];
+
+	ft_zero(coor, &tb[1], &tb[2]);
+	tb[0] = ft_strlen(s[0]) - 1;
 	if (ft_is_l(coor) == 1)
 		coor = ft_modif_coor(coor);
-	/*ft_putstr("len : ");
-	ft_putnbr(len);
-	ft_putchar('\n');*/
-	/*ft_putstr("x modif : ");
-	ft_putnbr(coor->x[0]);
-	ft_putchar('\n');
-	ft_putstr("y modif : ");
-	ft_putnbr(coor->y[0]);
-	ft_putchar('\n');*/
-	while((y < len) && solu[y])
+	while ((tb[2] < tb[0]) && s[tb[2]])
 	{
-		while (x < len  && (solu[y][x] != '\n' && solu[y][x] ))
+		while (tb[1] <= tb[0] && (s[tb[2]][tb[1]] != '\n' && s[tb[2]][tb[1]]))
 		{
-			/*ft_putstr("x : ");
-			ft_putnbr(x + coor->x[cmp]);
-			ft_putchar('\n');
-			ft_putstr("y : ");
-			ft_putnbr(y + coor->y[cmp]);
-			ft_putchar('\n');
-			ft_putchar(solu[y+ coor->y[cmp]][x+ coor->x[cmp]]);
-			ft_putchar('\n');*/
-			if (solu[y][x] == '.')
+			if (s[tb[2]][tb[1]] == '.')
 			{
-				while ((x + coor->x[cmp] < len  && y + coor->y[cmp] < len) &&
-				cmp < 4 && solu[y +  coor->y[cmp]][x + coor->x[cmp]] == '.' )
+				if (ft_cut(tb[1], tb[2], coor, s) == 4)
 				{
-					/*ft_putstr("cmp : ");
-					ft_putnbr(cmp);
-					ft_putchar('\n');*/
-					cmp++;
-					if (x + coor->x[cmp] >= len && y + coor->y[cmp] >= len)
-						cmp = 5;
-				}
-				if (cmp == 4)
-				{
-					*coor_x = x;
-					*coor_y = y;
+					ft_value(tb[1], tb[2], cr_x, cr_y);
 					return (NULL);
 				}
-				cmp = 0;
 			}
-			x++;
+			tb[1] += 1;
 		}
-		y++;
-		x = 0;
+		tb[2] += 1;
+		tb[1] = 0;
 	}
-	*coor_x = len + 1;
-	*coor_y = len + 1;
+	ft_value(tb[0] + 1, tb[0] + 1, cr_x, cr_y);
 	return (NULL);
 }

@@ -6,14 +6,13 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 16:01:37 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/22 18:20:09 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/01/06 14:06:55 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "libft.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 static char	**ft_init(char **solution, int len)
 {
@@ -51,10 +50,11 @@ int			ft_resolution(t_tetra *tetra, int *nbtetra, int len, char **tab)
 		i++;
 	}
 	solution = ft_init(solution, len);
-	if (ft_try_tetra(nbtetra, solution, 0, tetra) == 0)
+	if (ft_try(nbtetra, solution, 0, tetra) == 0)
 	{
 		len++;
-		tetra = ft_coor_tetra_zero_xy(ft_coor_tetra(tab, nbtetra[0]), nbtetra[0], 0);
+		tetra = ft_coor_tetra_zero_xy(
+		ft_coor_tetra(tab, nbtetra[0]), nbtetra[0], 0);
 		ft_resolution(tetra, nbtetra, len, tab);
 	}
 	else

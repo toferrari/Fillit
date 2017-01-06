@@ -6,14 +6,13 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 13:03:10 by tferrari          #+#    #+#             */
-/*   Updated: 2016/12/22 18:11:59 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/01/06 14:07:56 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "libft.h"
 #include <fcntl.h>
-#include <stdio.h>
 
 int	ft_error(void)
 {
@@ -48,7 +47,8 @@ int	main(int argc, char **argv)
 	ft_check_tetra(tetra, 0, nbtetra[0]) == 0)
 		return (ft_error());
 	if (ft_resolution(ft_coor_tetra_zero_xy(ft_coor_tetra(tetra,
-	nbtetra[0]), nbtetra[0], 0), nbtetra, ft_sqrt_up(nbtetra[0] * 4, 2), tetra) == 0)
+	nbtetra[0]), nbtetra[0], 0), nbtetra,
+	ft_sqrt_up(nbtetra[0] * 4, 2), tetra) == 0)
 		return (ft_error());
 	return (0);
 }

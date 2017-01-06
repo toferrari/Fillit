@@ -6,7 +6,7 @@
 #    By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/28 12:29:19 by tferrari          #+#    #+#              #
-#    Updated: 2016/12/14 16:30:13 by tferrari         ###   ########.fr        #
+#    Updated: 2017/01/06 13:48:12 by tferrari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,12 @@ SRC = 	srcs/main.c \
 		srcs/ft_resolution.c \
 		srcs/ft_sqrt_up.c \
 		srcs/ft_tab_2d.c \
-		srcs/ft_try_tetra.c
+		srcs/ft_try.c \
+		srcs/ft_try_ft.c \
+		srcs/ft_chech_coor_ft.c \
+		srcs/ft_strlen.c \
+		srcs/ft_putstr.c \
+		srcs/ft_putchar.c
 
 OBJ =	main.o \
 		ft_check_coor.o \
@@ -40,18 +45,22 @@ OBJ =	main.o \
 		ft_resolution.o \
 		ft_sqrt_up.o \
 		ft_tab_2d.o \
-		ft_try_tetra.o
-
-LIB = -L. -lft
+		ft_try.o \
+		ft_try_ft.o \
+		ft_chech_coor_ft.o\
+		ft_strlen.o \
+		ft_putstr.o \
+		ft_putchar.o
 
 all: $(NAME)
 
 $(NAME):
 	gcc -c -Wall -Werror -Wextra $(SRC) -Iincludes/
-	gcc -o $(NAME) $(OBJ) $(LIB) -Iincludes/
+	gcc -o $(NAME) $(OBJ) -Iincludes/
 
 clean:
 	rm -rf $(OBJ)
+	rm -rf libft.a
 
 fclean: clean
 	rm -f $(NAME)

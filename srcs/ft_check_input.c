@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jthillar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jthillar <jthillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 15:50:35 by jthillar          #+#    #+#             */
-/*   Updated: 2016/12/09 17:22:39 by jthillar         ###   ########.fr       */
+/*   Updated: 2017/01/06 12:47:41 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 int	ft_count_max(char *s)
 {
